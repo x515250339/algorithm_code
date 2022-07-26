@@ -18,7 +18,7 @@ class Solution:
 class Solution:
     def findNumberIn2DArray(self, matrix: List[List[int]], target: int) -> bool:
         """
-        参考后
+        参考后 时间复杂度 O(n) 空间复杂度O(1)
         :param matrix:
         :param target:
         :return:
