@@ -15,6 +15,11 @@ def sift(data, low, high):
 
 
 def heap_sort(data):
+    """
+     空间复杂度O(1)
+    :param data:
+    :return:
+    """
     n = len(data)
     for i in range(n // 2 - 1, -1, -1):
         sift(data, i, n - 1)

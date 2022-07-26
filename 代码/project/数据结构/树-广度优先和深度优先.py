@@ -1,3 +1,6 @@
+from queue import Queue
+
+
 class Tree:
 
     def __init__(self, val=None, left=None, right=None):
@@ -26,7 +29,7 @@ T = Tree("D", Tree("B", Tree("A"), Tree("C")), Tree("E", right=Tree("G", Tree("F
 
 def depth_tree(tree_node):
     """
-    深度优先 遍历
+    DFS 递归实现深度优先 遍历
     :param tree_node:
     :return:
     """
@@ -38,7 +41,24 @@ def depth_tree(tree_node):
             depth_tree(tree_node.right)
 
 
+def depth_tree_(tree_node):
+    """
+    DFS 栈实现深度优先 遍历
+    :param tree_node:
+    :return:
+    """
+    q = [tree_node]
+    while q:
+        current_node = q.pop()
+        print(current_node.val)
+        if current_node.right:
+            q.append(current_node.right)
+        if current_node.left:
+            q.append(current_node.left)
+
+
 # depth_tree(T)
+depth_tree_(T)
 """
 D
 B
@@ -56,10 +76,13 @@ F
 2）先访问顶点的邻接点先于后访问顶点的邻接点被访问。
 """
 
-from queue import Queue
-
 
 def level_queue(tree_node):
+    """
+    BFS 广度优先 遍历
+    :param tree_node:
+    :return:
+    """
     if tree_node is None:
         return
     q = Queue()
@@ -73,7 +96,7 @@ def level_queue(tree_node):
             q.put(node.right)
 
 
-level_queue(T)
+# level_queue(T)
 """
 D
 B

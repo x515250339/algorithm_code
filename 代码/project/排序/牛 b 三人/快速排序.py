@@ -15,6 +15,13 @@ def partition(li, left, right):
 
 
 def quick_sort(li, left, right):
+    """
+    快速排序 时间复杂度O(n logn)  空间复杂度O(1)
+    :param li:
+    :param left:
+    :param right:
+    :return:
+    """
     if left < right:
         mid = partition(li, left, right)
         quick_sort(li, left, mid - 1)

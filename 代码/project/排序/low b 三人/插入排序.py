@@ -12,7 +12,7 @@ import random
 
 def insert_sort(li):
     """
-    插入排序 时间复杂度 O(n²)
+    插入排序 时间复杂度 O(n²)  空间复杂度O(1)
     :param li:
     :return:
     """

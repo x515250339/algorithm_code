@@ -10,7 +10,7 @@ import random
 
 def bubble_sort(li):
     """
-    冒泡排序 时间复杂度O(n²)
+    冒泡排序 时间复杂度O(n²)  空间复杂度O(1)
     :param li:
     :return:
     """
