@@ -1,3 +1,7 @@
+import random
+from typing import List
+
+
 def binary_search(li: [int], val: int) -> int:
     """
     二分查找 时间复杂度 O(log n)
@@ -20,4 +24,23 @@ def binary_search(li: [int], val: int) -> int:
 
 
 li = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-print(binary_search(li, 3))
+print(binary_search(li, 0))
+
+
+def binary_search(data: List[int], tar: int) -> bool:
+    start, end = 0, len(data) - 1
+    while start <= end:
+        mid = (start + end) // 2
+        if data[mid] == tar:
+            return True
+        if data[mid] < tar:
+            start = mid + 1
+        else:
+            end = mid - 1
+    return False
+
+
+li = [random.randint(1, 100) for _ in range(50)]
+li.sort()
+print(li)
+print(binary_search(li, 10))
