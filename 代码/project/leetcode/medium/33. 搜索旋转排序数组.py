@@ -53,32 +53,32 @@ class Solution(object):
         :rtype: int
         """
         start, end = 0, len(nums) - 1
-        while start <= end:
+        while start + 1 < end:
             mid = (start + end) // 2
-            print(mid)
             if nums[mid] == target:
                 return mid
-            elif nums[0] > nums[mid]:
-                if nums[mid] > target:
-                    end = mid - 1
+            if nums[mid] < target:
+                if nums[mid] < nums[-1]:
+                    start = mid
                 else:
-                    start = mid + 1
+                    end = mid
             else:
-                if nums[mid] > target > nums[-1]:
-                    end = mid - 1
+                if nums[mid] > nums[0]:
+                    start = mid
                 else:
-                    if nums[mid] < nums[-1]:
-                        end = mid - 1
-                    else:
-                        start = mid + 1
-
+                    end = mid
+        if nums[start] == target:
+            return start
+        if nums[end] == target:
+            return end
         return -1
 
 
-# nums = [4, 5, 6, 7, 0, 1, 2]
+nums = [4, 5, 6, 7, 0, 1, 2]
+# nums = [4, 5, 6, 7, 8, 1, 2, 3]
 # nums = [3, 5, 1]
-nums = [1, 3, 5]
+# nums = [1, 3, 5]
 # nums = [5, 1, 3]
-target = 5
+target = 1
 
 print(Solution().search(nums, target))
