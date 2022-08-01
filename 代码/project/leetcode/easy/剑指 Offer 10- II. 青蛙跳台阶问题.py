@@ -42,10 +42,10 @@ class Solution:
 
 class Solution:
     def numWays(self, n: int) -> int:
-        s = 0
+        a, b = 1, 1
         for i in range(n):
-            if n // 2:
-                s += 1
+            a, b = b, a + b
+        return a % 1000000007
 
 
-print(Solution().numWays(39))
+print(Solution().numWays(7))

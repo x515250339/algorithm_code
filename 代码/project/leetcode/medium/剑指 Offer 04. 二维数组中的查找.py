@@ -34,6 +34,25 @@ class Solution:
         return False
 
 
+class Solution:
+    def findNumberIn2DArray(self, matrix: List[List[int]], target: int) -> bool:
+        """
+        参考后 时间复杂度 O(n) 空间复杂度O(1)
+        :param matrix:
+        :param target:
+        :return:
+        """
+        x, y = 0, 0
+        while x <= len(matrix) - 1 and y < len(matrix[0]):
+            if matrix[x][y] < target:
+                x += 1
+            elif matrix[x][y] > target:
+                y += 1
+            else:
+                return True
+        return False
+
+
 matrix = [
     [1, 4, 7, 11, 15],
     [2, 5, 8, 12, 19],
@@ -41,7 +60,8 @@ matrix = [
     [10, 13, 14, 17, 24],
     [18, 21, 23, 26, 30]
 ]
-
+# matrix = [[-5]]
 target = 5
+# target = -10
 # target = 20
 print(Solution().findNumberIn2DArray(matrix, target))
