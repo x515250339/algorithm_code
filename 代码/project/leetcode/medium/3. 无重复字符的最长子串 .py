@@ -46,15 +46,15 @@ class Solution(object):
         :rtype: int
         """
         d = set()
-        su, left, ma = 0, 0, 0
+        ma, su, left = 0, 0, 0
         for i in range(len(s)):
             su += 1
             while s[i] in d:
                 d.remove(s[left])
                 left += 1
                 su -= 1
-            ma = max(len(d), ma)
             d.add(s[i])
+            ma = max(ma, su)
         return ma
 
 
