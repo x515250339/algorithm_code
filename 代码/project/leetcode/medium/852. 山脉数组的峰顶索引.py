@@ -89,7 +89,26 @@ class Solution(object):
         return ma
 
 
+class Solution(object):
+    def peakIndexInMountainArray(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        start, end = 0, len(arr) - 1
+        while start + 1 < end:
+            mid = (start + end) // 2
+            if arr[mid] > arr[mid - 1]:
+                start = mid
+            else:
+                end = mid
+        if arr[start] > arr[end]:
+            return start
+        else:
+            return end
+
+
 arr = [24, 69, 100, 99, 79, 78, 67, 36, 26, 19]
-arr = [3, 4, 5, 1]
-arr = [55, 59, 63, 99, 97, 94, 84, 81, 79, 66, 40, 38, 33, 23, 22, 21, 17, 9, 7]
+# arr = [3, 4, 5, 1]
+# arr = [55, 59, 63, 99, 97, 94, 84, 81, 79, 66, 40, 38, 33, 23, 22, 21, 17, 9, 7]
 print(Solution().peakIndexInMountainArray(arr))

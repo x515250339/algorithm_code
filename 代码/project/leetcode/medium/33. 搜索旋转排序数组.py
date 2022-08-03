@@ -103,7 +103,31 @@ class Solution(object):
         if nums[end] == target:
             return end
         return -1
-
+# if len(a) == 0:
+#     return -1
+#
+# start, end = 0, len(a) - 1
+#
+# while start + 1 < end:
+#     mid = (start + end) // 2
+#     if a[mid] == target:
+#         return mid
+#     if a[start] <= a[mid]:
+#         if a[start] <= target < a[mid]:
+#             end = mid
+#         else:
+#             start = mid
+#     else:
+#         if a[start] > target > a[mid]:
+#             start = mid
+#         else:
+#             end = mid
+#
+# if a[start] == target:
+#     return start
+# if a[end] == target:
+#     return end
+# return -1
 
 nums = [4, 5, 6, 7, 0, 1, 2]
 # nums = [4, 5, 6, 7, 8, 1, 2, 3]
