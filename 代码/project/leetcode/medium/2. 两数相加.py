@@ -37,40 +37,39 @@
 #  0 <= Node.val <= 9
 #  题目数据保证列表表示的数字不含前导零
 #
-#
-#  Related Topics 递归 链表 数学 👍 8401 👎 0
+#  Related Topics 递归 链表 数学 👍 8425 👎 0
 
 
 # Definition for singly-linked list.
-class ListNode(object):
+class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 
-class Solution(object):
-
+class Solution:
     def addTwoNumbers(self, l1, l2):
-        """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
-        """
         sum_tmp = 0
-        ln1 = ln2 = ListNode()
+        r = n = ListNode()
+
         while l1 or l2:
             sum_tmp += l1.val if l1 else 0
             sum_tmp += l2.val if l2 else 0
-            ln2.next = ListNode(sum_tmp % 10)
-            ln2 = ln2.next
-            sum_tmp = sum_tmp // 10
+            n.next = ListNode(sum_tmp % 10)
+            sum_tmp //= 10
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
+
         if sum_tmp:
-            ln2.next = ListNode(sum_tmp)
-        return ln1.next
+            n.next = ListNode(sum_tmp)
+        return r.next
 
 
-l1 = ListNode(9, ListNode(9, ListNode(9, ListNode(9, ListNode(9, ListNode(9, ListNode(9)))))))
-l2 = ListNode(9, ListNode(9, ListNode(9, ListNode(9))))
-print(Solution().addTwoNumbers(l1, l2))
+l1 = ListNode(2, ListNode(4, ListNode(3)))
+l2 = ListNode(5, ListNode(6, ListNode(4)))
+print(Solution().addTwoNumbers(l1, l2).val)
+print(Solution().addTwoNumbers(l1, l2).next.val)
+print(Solution().addTwoNumbers(l1, l2).next.next.val)
+
+# for i in '807':
+#     int(i) % 10

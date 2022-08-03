@@ -39,27 +39,23 @@
 #  Related Topics 哈希表 字符串 滑动窗口 👍 7902 👎 0
 
 
-class Solution(object):
-    def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
         d = set()
-        ma, su, left = 0, 0, 0
+        su, left, ma = 0, 0, 0
         for i in range(len(s)):
             su += 1
             while s[i] in d:
                 d.remove(s[left])
                 left += 1
                 su -= 1
+            ma = max(su, ma)
             d.add(s[i])
-            ma = max(ma, su)
         return ma
 
 
-print(Solution().lengthOfLongestSubstring("abcabcbb"))
-# print(Solution().lengthOfLongestSubstring("pwwkew"))
+# print(Solution().lengthOfLongestSubstring("abcabcbb"))
+print(Solution().lengthOfLongestSubstring("pwwkew"))
 # print(Solution().lengthOfLongestSubstring(" "))
 # print(Solution().lengthOfLongestSubstring("aa"))
 # print(Solution().lengthOfLongestSubstring("abcb"))
