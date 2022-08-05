@@ -129,11 +129,43 @@ class Solution(object):
 #     return end
 # return -1
 
-nums = [4, 5, 6, 7, 0, 1, 2]
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        start, end = 0, len(nums) - 1
+
+        while start + 1 < end:
+            mid = (start + end) // 2
+            if nums[mid] == target:
+                return True
+            if nums[0] <= nums[mid]:
+                if nums[0] <= target < nums[mid]:
+                    end = mid
+                else:
+                    start = mid
+
+            else:
+                if nums[0] > target > nums[mid]:
+                    start = mid
+                else:
+                    end = mid
+
+        if nums[start] == target:
+            return True
+        if nums[end] == target:
+            return True
+        return False
+
+
+# nums = [4, 5, 6, 7, 0, 1, 2]
 # nums = [4, 5, 6, 7, 8, 1, 2, 3]
 # nums = [3, 5, 1]
 # nums = [1, 3, 5]
 nums = [5, 1, 3]
-target = 3
+target = 5
 
 print(Solution().search(nums, target))

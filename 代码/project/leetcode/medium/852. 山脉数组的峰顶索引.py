@@ -64,6 +64,7 @@
 #  进阶：很容易想到时间复杂度 O(n) 的解决方案，你可以设计一个 O(log(n)) 的解决方案吗？
 #
 #  Related Topics 数组 二分查找 👍 283 👎 0
+from typing import List
 
 
 class Solution(object):
@@ -106,6 +107,25 @@ class Solution(object):
             return start
         else:
             return end
+
+
+class Solution:
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        start, end = 0, len(arr) - 1
+        ma = 0
+        while start + 1 < end:
+            mid = (start + end) // 2
+            if arr[mid - 1] < arr[mid] > arr[ma]:
+                ma = mid
+                start = mid
+            else:
+                end = mid
+
+        if arr[start] > arr[ma]:
+            ma = start
+        if arr[end] > arr[ma]:
+            ma = end
+        return ma
 
 
 arr = [24, 69, 100, 99, 79, 78, 67, 36, 26, 19]
