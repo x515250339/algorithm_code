@@ -74,4 +74,5 @@ class Solution(object):
 
 
 nums = [4, 5, 6, 7, 0, 1, 2]
+nums = [11, 13, 15, 17]
 print(Solution().findMin(nums))
