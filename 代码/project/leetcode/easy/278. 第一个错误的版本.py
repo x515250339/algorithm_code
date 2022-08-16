@@ -66,6 +66,27 @@ class Solution(object):
         return -1
 
 
+class Solution(object):
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        start, end = 1, n
+
+        while start + 1 < end:
+            mid = (start + end) // 2
+            if isBadVersion(mid):
+                end = mid
+            else:
+                start = mid
+        if isBadVersion(start):
+            return start
+        if isBadVersion(end):
+            return end
+        return -1
+
+
 # print(Solution().firstBadVersion(2))
 # print(Solution().firstBadVersion(5))
 print(Solution().firstBadVersion(1420736637))

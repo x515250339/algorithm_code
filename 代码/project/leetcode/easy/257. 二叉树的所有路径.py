@@ -49,6 +49,7 @@ class Solution:
                 if not root.left and not root.right:
                     r.append(s)
                 else:
+                    s += "->"
                     binary(root.left, s)
                     binary(root.right, s)
 
