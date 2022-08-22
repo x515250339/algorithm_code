@@ -54,26 +54,40 @@ class Solution:
         if not root:
             return True
 
-        if not root.left and not root.right:
+        def height(root):
+            if not root:
+                return 0
+            return max(height(root.left), height(root.right)) + 1
+
+        return abs(height(root.left) - height(root.right)) <= 1 and self.isBalanced(
+            root.left) and self.isBalanced(root.right)
+
+
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        if not root:
             return True
 
-        def is_bal(root, res):
-            if root:
-                if root.left:
-                    res = is_bal(root.left, res)
-                if root.right:
-                    res = is_bal(root.right, res)
-                res += 1
-            return res
+        def height(root):
+            if not root:
+                return 0
 
-        l = is_bal(root.left, 1)
-        r = is_bal(root.right, 1)
-        print(l, r)
-        return abs(l - r) <= 1
+            l_h = height(root.left)
+            r_h = height(root.right)
+
+            if l_h == -1 or r_h == -1 or abs(l_h - r_h) > 1:
+                return -1
+            else:
+                return max(l_h, r_h) + 1
+
+        return height(root) > 0
 
 
 # root = TreeNode(1, TreeNode(2, TreeNode(3)))
 # [1,2,2,3,3,null,null,4,4]
-root = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
-# root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4), TreeNode(4)), TreeNode(3)), TreeNode(2))
+
+# [1,2,2,3,null,null,3,4,null,null,4]
+# root = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
+root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4), TreeNode(4)), TreeNode(3)), TreeNode(2))
+root = TreeNode(1, TreeNode(2, TreeNode(3, TreeNode(4))), TreeNode(2, right=TreeNode(3, right=TreeNode(4))))
 print(Solution().isBalanced(root))
