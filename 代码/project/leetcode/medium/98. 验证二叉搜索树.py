@@ -47,24 +47,47 @@ class TreeNode:
 
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        if not root:
-            return False
-        v = root.val
-        if root.left:
-            if root.left.val < v:
+        def helper(root, lower=float('-inf'), upper=float('inf')):
+            if not root:
                 return True
-            else:
+            v = root.val
+            if v <= lower or v >= upper:
                 return False
-        if root.right:
-            print(root.right.val)
-            if root.right.val > v:
-                return True
-            else:
+            if not helper(root.left, lower, v):
                 return False
-        l = self.isValidBST(root.left)
-        r = self.isValidBST(root.right)
-        return l & r
+            if not helper(root.right, v, upper):
+                return False
+
+            return True
+
+        return helper(root)
 
 
-root = makeTree([5, 1, 4, None, None, 3, 6])
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+
+        def helper(root, upper=float("inf"), lower=float("-inf")):
+            if not root:
+                return True
+
+            val = root.val
+
+            if lower >= val or upper <= val:
+                return False
+
+            if not helper(root.left, val, lower):
+                return False
+            if not helper(root.right, upper, val):
+                return False
+            return True
+
+        return helper(root)
+
+
+root = makeTree([5, 1, 4, "null", "null", 3, 6])
+# root = makeTree([2, 1, 3])
 print(Solution().isValidBST(root))
