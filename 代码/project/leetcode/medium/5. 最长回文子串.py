@@ -29,18 +29,22 @@
 
 
 class Solution:
+    def helper(self, s, left, right):
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        print(s[left + 1: right])
+        return s[left + 1: right]
+
     def longestPalindrome(self, s: str) -> str:
-        d = {}
-        m = ""
-        l = 0
-        for i, v in enumerate(s):
-            while v in d.values():
-                m += d.pop(l)
-                l += 1
-            else:
-                m += v
-            d[i] = v
-        return m
+        res = ""
+        for i in range(len(s)):
+            cur1 = self.helper(s, i, i)
+            cur2 = self.helper(s, i, i + 1)
+            res = cur1 if len(cur1) > len(res) else res
+            res = cur2 if len(cur2) > len(res) else res
+
+        return res
 
 
 print(Solution().longestPalindrome("babad"))
