@@ -70,4 +70,33 @@ class Solution(object):
         return res
 
 
+import collections
+
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+
+        queue, res = collections.deque([root]), []
+
+        while queue:
+            tmp_list = []
+            for _ in range(len(queue)):
+                root = queue.popleft()
+                if not root:
+                    continue
+                tmp_list.append(root.val)
+                if root.left:
+                    queue.append(root.left)
+                if root.right:
+                    queue.append(root.right)
+            res.append(tmp_list)
+        return res
+
+
 print(Solution().levelOrder(makeTree([3, 9, 20, 15, 17])))
