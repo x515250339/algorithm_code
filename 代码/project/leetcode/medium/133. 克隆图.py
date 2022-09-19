@@ -87,7 +87,7 @@ class Solution:
         if not node:
             return node
 
-        if node not in self.res:
+        if node in self.res:
             return self.res[node]
 
         clone_node = Node(node.val, [])
@@ -107,17 +107,17 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         if not node:
             return node
-        res = {}
-        queue = collections.deque([node])
+
+        queue, res = collections.deque([node]), {}
         res[node] = Node(node.val, [])
 
         while queue:
-            node_tmp = queue.popleft()
-            if node_tmp not in res:
-                for n in node_tmp.neighbors:
+            curr_node = queue.popleft()
+            for n in curr_node.neighbors:
+                if n not in res:
                     res[n] = Node(n.val, [])
                     queue.append(n)
-                res[node_tmp].neighbors.append(res[n])
+                res[curr_node].neighbors.append(res[n])
         return res[node]
 
 
