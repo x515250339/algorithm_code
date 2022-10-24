@@ -33,15 +33,40 @@ image[x][y] == '1'
 image 中的黑色像素仅形成一个 组件
 
 """
+import collections
 from typing import List
 
 
 class Solution:
     def minArea(self, image: List[List[str]], x: int, y: int) -> int:
-        row, col = len(image), len(image[0])
+        # 遍历，更新  用roc坐标
+        Row, Col = len(image), len(image[0])
 
-        while x < row and y < col:
-            image[x][y]
+        Up = x
+        Down = x
+        Left = y
+        Right = y
+
+        # ------------- bfs + 记忆化
+        Q = collections.deque()
+        visited = [[False for _ in range(Col)] for _ in range(Row)]
+        Q.append((x, y))
+        visited[x][y] = True
+        while Q:
+            r, c = Q.popleft()
+
+            Up = min(Up, r)
+            Down = max(Down, r)
+            Left = min(Left, c)
+            Right = max(Right, c)
+
+            for nr, nc in [(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)]:
+                if 0 <= nr < Row and 0 <= nc < Col:
+                    if visited[nr][nc] is False and image[nr][nc] == '1':
+                        visited[nr][nc] = True
+                        Q.append((nr, nc))
+
+        return (Down - Up + 1) * (Right - Left + 1)
 
 
 image = [["0", "0", "1", "0"], ["0", "1", "1", "0"], ["0", "1", "0", "0"]]
