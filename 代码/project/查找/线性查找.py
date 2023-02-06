@@ -1,12 +1,12 @@
-def linear_search(li, val):
+def linear_search(data_list, val):
     """
     线性查找 时间复杂度 O(n)
 
-    :param li: 输入列表
+    :param data_list: 输入列表
     :param val: 返回查询到的索引
     :return:
     """
-    for i, j in enumerate(li):
+    for i, j in enumerate(data_list):
         if val == j:
             return i
 

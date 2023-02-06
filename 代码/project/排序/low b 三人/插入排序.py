@@ -16,12 +16,20 @@ def insert_sort(li):
     :param li:
     :return:
     """
+    # 循环开始
     for i in range(1, len(li)):
+        # 获取第二个值
         tmp = li[i]
+        # 第一个索引下标
         j = i - 1
+        # 当满足循环条件，j 没有超出索引边界，然后开始比较第一个值（前一个值）和下一个值，以此类推
         while j >= 0 and li[j] > tmp:
+            # 交换位置
             li[j + 1] = li[j]
+            # 索引-1继续比较
             j = j - 1
+        print()
+        # 交换位置，小的往前
         li[j + 1] = tmp
 
 

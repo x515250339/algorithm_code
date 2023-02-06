@@ -40,7 +40,28 @@ def binary_search(data: List[int], tar: int) -> bool:
     return False
 
 
+def binary_search_bytedance(data_list: List[int], val: int) -> bool:
+    if not data_list:
+        return False
+    start, end = 0, len(data_list) - 1
+
+    while start + 1 < end:
+        mid = (start + end) // 2
+        if data_list[mid] == val:
+            return True
+        if data_list[mid] < val:
+            start = mid
+        else:
+            end = mid
+
+    if data_list[start] == val or data_list[end] == val:
+        return True
+
+    return False
+
+
 li = [random.randint(1, 100) for _ in range(50)]
 li.sort()
 print(li)
-print(binary_search(li, 10))
+# print(binary_search(li, 10))
+print(binary_search_bytedance(li, 10))
