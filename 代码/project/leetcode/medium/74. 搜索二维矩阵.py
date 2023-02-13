@@ -63,6 +63,32 @@ class Solution(object):
         return False
 
 
+class Solution_:
+
+    # def searchMatrix(self, matrix, target):
+    #     for i in matrix:
+    #         s = set(i)
+    #         if target in s:
+    #             return True
+    #     return False
+    def searchMatrix(self, matrix, target):
+        if not matrix:
+            return False
+        h, w = len(matrix), len(matrix[0])
+        start, end = 0, w * h - 1
+        while start + 1 < end:
+            mid = (start + end) // 2
+            i, j = mid // w, mid % w
+            if matrix[i][j] == target:
+                return True
+            if matrix[i][j] < target:
+                start = mid
+            else:
+                end = mid
+        return False
+
+
 matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]]
 target = 30
 print(Solution().searchMatrix(matrix, target))
+print(Solution_().searchMatrix(matrix, target))
