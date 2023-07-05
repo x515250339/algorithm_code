@@ -120,4 +120,4 @@ if __name__ == '__main__':
     # print(s.get_top())
     # print(s.pop())
     # print(s.get_top())
-    # print(trans_from(12))
+    print(trans_from(12))

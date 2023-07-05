@@ -1,6 +1,13 @@
 import collections
 from queue import Queue
+from collections import deque
 
+q = deque()
+q.append(1)
+print(q.popleft())
+
+q.appendleft(2)
+print(q.pop())
 # 1. 基本FIFO队列  先进先出 FIFO即First in First Out,先进先出
 # 2. maxsize设置队列中，数据上限，小于或等于0则不限制，容器中大于这个数则阻塞，直到队列中的数据被消掉
 q = Queue(maxsize=0)
