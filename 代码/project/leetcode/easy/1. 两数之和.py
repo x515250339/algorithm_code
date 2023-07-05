@@ -75,5 +75,43 @@ class Solution(object):
         return
 
 
+class Solution(object):
+    def binary_search(self, li, start, end, target):
+        while start + 1 < end:
+            mid = (start + end) // 2
+            if li[mid][1] == target:
+                return mid
+            if li[mid][1] < target:
+                start = mid
+            else:
+                end = mid
+        if li[start][1] == target:
+            return start
+        if li[end][1] == target:
+            return end
+        return
+
+    def twoSum(self, nums, target):
+        """
+        时间复杂度 O(n) 空间复杂度O(n)
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        if not nums:
+            return
+        new_nums = [[i, j] for i, j in enumerate(nums)]
+        print(new_nums)
+        new_nums.sort(key=lambda x: x[1])
+
+        for i in range(len(new_nums)):
+            tmp = target - new_nums[i][1]
+            t = self.binary_search(new_nums, i + 1, len(new_nums) - 1, tmp)
+            if t:
+                return sorted([new_nums[i][0], new_nums[t][0]])
+        return
+
+
 print(Solution().twoSum(nums=[3, 2, 4], target=6))
 print(Solution().twoSum(nums=[3, 3], target=6))
+print(Solution().twoSum(nums=[3, 2, 3], target=6))
