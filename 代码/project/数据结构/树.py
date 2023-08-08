@@ -112,3 +112,82 @@ def layered_print(tree):
 
 print("分层打印")
 layered_print(T)
+
+"""
+树模拟文件夹
+"""
+
+
+class Node:
+
+    def __init__(self, name, ty="dir"):
+        """
+
+        :param name: 目录名称
+        :param ty: 类型
+        """
+        self.name = name
+        self.type = ty
+        self.parent = None
+        self.children = []
+
+    def __repr__(self):
+        """返回展示名称而非内存地址"""
+        return self.name
+
+
+class FileTree:
+
+    def __init__(self):
+        self.root = Node("/")
+        self.now = self.root
+
+    def mkdir(self, name):
+        """
+        创建目录
+        :param name: 新目录名称
+        :return:
+        """
+        if name[-1] != "/":
+            name += "/"
+        # 创建该节点
+        node = Node(name)
+        # 为根目录添加当前节点
+        self.now.children.append(node)
+
+    def ls(self):
+        """
+        返回当前目录下的所有节点
+        :return:
+        """
+        return self.now.children
+
+    def cd(self, name):
+        """
+        进入指定目录
+
+        :param name: 目录名称
+        :return:
+        """
+        if name[-1] != "/":
+            name += "/"
+        # 判断是否为返回上一级
+        if name == "../":
+            self.now = self.now.parent
+            return
+        # 寻找到指定的目录
+        for child in self.now.children:
+            if child.name == name:
+                self.now = child
+                return
+        # 没有查找的目录抛出异常
+        raise ValueError("invalid dir")
+
+
+tree = FileTree()
+tree.mkdir("bin")
+tree.mkdir("etc")
+
+print("---", tree.ls())
+tree.cd("etc")
+print("---", tree.ls())

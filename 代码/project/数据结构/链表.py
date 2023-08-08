@@ -50,3 +50,50 @@ l = list_reverse(L)
 print(l.item)
 print(l.next.item)
 print(l.next.next.item)
+
+
+def head_create_linked(li: list) -> Linked:
+    """
+    头插法
+
+    :param li: 输入列表
+    :return: type(Linked)
+    """
+    head = Linked(li[0])
+
+    for cur in li[1:]:
+        node = Linked(cur)
+        node.next = head
+        head = node
+    return head
+
+
+def print_linked(linked: list) -> None:
+    if linked:
+        print(linked.item, end=",")
+        print_linked(linked.next)
+
+
+def tail_create_linked(li: list) -> Linked:
+    """
+    尾插法
+
+    :param li: 输入列表
+    :return: type(Linked)
+    """
+    head = Linked(li[0])
+    tail = head
+
+    for cur in li[1:]:
+        node = Linked(cur)
+        tail.next = node
+        tail = node
+
+    return head
+
+
+node = head_create_linked([1, 2, 3])
+print_linked(node)
+print()
+node = tail_create_linked([1, 2, 3])
+print_linked(node)
