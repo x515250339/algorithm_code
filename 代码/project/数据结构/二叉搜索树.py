@@ -68,8 +68,84 @@ class BST:
             else:
                 return
 
+    def query(self, node, val):
+        if not node:
+            return
+        if val > node.val:
+            return self.query(node.r_children, val)
+        elif val < node.val:
+            return self.query(node.l_children, val)
+        else:
+            return node
+
+    def query_no_rec(self, val):
+        p = self.root
+        while p:
+            if p.val < val:
+                p = p.r_children
+            elif p.val > val:
+                p = p.l_children
+            else:
+                return p
+        return
+
+    def __remove_node_1(self, node):
+        if not node.parent:
+            self.root = None
+        if node == node.parent.l_children:
+            node.parent.l_children = None
+        else:
+            node.parent.r_children = None
+
+    def __remove_node_21(self, node):
+        if not node.parent:
+            self.root = node.l_chirdren
+            node.l_chirdren.parent = None
+        elif node == node.parent.l_children:
+            node.parent.l_children = node.l_children
+            node.l_children.parent = node.parent
+        else:
+            node.parent.r_children = node.l_children
+            node.l_children.parent = node.parent
+
+    def __remove_node_22(self, node):
+        if not node.parent:
+            self.root = node.r_chirdren
+        elif node == node.parent.l_children:
+            node.parent.l_children = node.r_children
+            node.r_children.parent = node.parent
+        else:
+            node.parent.r_children = node.r_children
+            node.r_children.parent = node.parent
+
+    def delete_node(self, val):
+        if self.root:
+            node = self.query_no_rec(val)
+            if not node:
+                return False
+            if not node.l_children and not node.r_children:
+                self.__remove_node_1(node)
+            elif not node.r_children:
+                self.__remove_node_21(node)
+            elif not node.l_children:
+                self.__remove_node_22(node)
+            else:
+                min_node = node.r_children
+                while min_node.l_children:
+                    min_node = min_node.l_children
+                node.val = min_node.val
+                if min_node.r_children:
+                    self.__remove_node_22(min_node)
+                else:
+                    self.__remove_node_1(min_node)
+
 
 tree = BST([4, 6, 7, 9, 2, 1, 3])
+print(tree.query(tree.root, 3).val)
+print(tree.query_no_rec(3).val)
+print(tree.delete_node(3))
+print(tree.delete_node(9))
+print(tree.delete_node(1))
 
 
 def pre_traverse(tree):
