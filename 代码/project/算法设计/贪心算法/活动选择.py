@@ -12,6 +12,13 @@ activities.sort(key=lambda x: x[1])
 
 
 def activate_selection(active):
+    """
+    时间复杂度：O(n)
+    空间复杂度：O(n)
+
+    :param active:
+    :return:
+    """
     res = [active[0]]
     for i in range(1, len(active)):
         if active[i][0] >= res[-1][1]:

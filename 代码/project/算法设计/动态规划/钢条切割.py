@@ -8,6 +8,14 @@ p = [0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30]
 
 
 def f1_recursion(p, n):
+    """
+    时间复杂度：O(2n次方)
+    空间复杂度：O(1)
+
+    :param p:
+    :param n:
+    :return:
+    """
     if n == 0:
         return 0
     res = p[n]
@@ -17,6 +25,14 @@ def f1_recursion(p, n):
 
 
 def f2_recursion(p, n):
+    """
+    时间复杂度：O(2n次方)
+    空间复杂度：O(1)
+
+    :param p:
+    :param n:
+    :return:
+    """
     if n == 0:
         return 0
     res = 0
@@ -32,6 +48,13 @@ n²
 
 
 def cut_rod_dp(p, n):
+    """
+    时间复杂度：O(n²)
+    空间复杂度：O(n)
+    :param p:
+    :param n:
+    :return:
+    """
     r = [0]
     for i in range(1, n + 1):
         res = 0
@@ -42,6 +65,14 @@ def cut_rod_dp(p, n):
 
 
 def cut_rod_extend(p, n):
+    """
+    时间复杂度：O(n²)
+    空间复杂度：O(n)
+
+    :param p:
+    :param n:
+    :return:
+    """
     r = [0]
     s = [0]
     for i in range(1, n + 1):
@@ -58,6 +89,14 @@ def cut_rod_extend(p, n):
 
 
 def cut_rod_solution(p, n):
+    """
+    时间复杂度：O(n²)
+    空间复杂度：O(n)
+
+    :param p:
+    :param n:
+    :return:
+    """
     r, s = cut_rod_extend(p, n)
     ans = []
     while n > 0:

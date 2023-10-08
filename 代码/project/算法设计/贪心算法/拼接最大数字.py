@@ -16,6 +16,13 @@ def cmp(x, y):
 
 
 def number_join(li):
+    """
+    时间复杂度：O(n)
+    空间复杂度：O(n)
+
+    :param li:
+    :return:
+    """
     li = list(map(str, li))
     li.sort(key=cmp_to_key(cmp))
     return "".join(li)

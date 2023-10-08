@@ -9,6 +9,14 @@
 
 
 def lcs_length(x, y):
+    """
+    时间复杂度：O(n²)
+    空间复杂度：O(n)
+
+    :param x:
+    :param y:
+    :return:
+    """
     m = len(x)
     n = len(y)
     c = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
@@ -25,6 +33,14 @@ import copy
 
 
 def lcs(x, y):
+    """
+    时间复杂度：O(n²)
+    空间复杂度：O(n)
+
+    :param x:
+    :param y:
+    :return:
+    """
     m = len(x)
     n = len(y)
     c = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
@@ -44,6 +60,14 @@ def lcs(x, y):
 
 
 def lsc_print(x, y):
+    """
+    时间复杂度：O(n²)
+    空间复杂度：O(n)
+
+    :param x:
+    :param y:
+    :return:
+    """
     c, b = lcs(x, y)
     i = len(x)
     j = len(y)
