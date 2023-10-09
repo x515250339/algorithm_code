@@ -20,36 +20,47 @@ class Notices:
 
     def notify(self):
         for observer in self.observers:
-            observer.update()
+            observer.update(self)
 
 
 # 观察者接口
-class Observer:
-    def update(self):
-        pass
+class StaffNotice(Notices):
+
+    def __init__(self, company_info=None):
+        super().__init__()
+        self.__company_info = company_info
+
+    @property
+    def company_info(self):
+        return self.__company_info
+
+    @company_info.setter
+    def company_info(self, info):
+        self.__company_info = info
+        self.notify()
 
 
-# 具体观察者A
-class ConcreteObserverA(Observer):
-    def update(self):
-        print("ConcreteObserverA 收到通知并进行更新")
+class Staff(Observer):
+
+    def __init__(self):
+        self.company_info = None
+
+    def update(self, notices):
+        self.company_info = notices.company_info
 
 
-# 具体观察者B
-class ConcreteObserverB(Observer):
-    def update(self):
-        print("ConcreteObserverB 收到通知并进行更新")
-
-
-# 客户端代码
-subject = ConcreteSubject()
-observerA = ConcreteObserverA()
-observerB = ConcreteObserverB()
-
-subject.attach(observerA)
-subject.attach(observerB)
-
-subject.notify()
+notice = StaffNotice("初始化公司信息")
+s1 = Staff()
+s2 = Staff()
+notice.attach(s1)
+notice.attach(s2)
+notice.company_info = "公司今年业绩很好"
+print(s1.company_info)
+print(s2.company_info)
+notice.detach(s2)
+notice.company_info = "公司明年业绩也很好"
+print(s1.company_info)
+print(s2.company_info)
 
 
 # 主题接口
